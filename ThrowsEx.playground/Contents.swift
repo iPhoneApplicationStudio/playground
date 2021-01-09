@@ -6,7 +6,11 @@ enum LoginValidationError:Error {
    case passwordLengthNotCorrect
 }
 
-class ThrowsExample
+protocol ThrowsExampleProtocol:AnyObject{
+    func login() throws
+}
+
+class ThrowsExample:ThrowsExampleProtocol
 {
     //Change these 2 vars to test the throw error
     var email:String? = "abc@gmail.com"
@@ -16,7 +20,7 @@ class ThrowsExample
         guard let email = self.email, let password = self.password else{
             throw LoginValidationError.fillFields
         }
-        let isValidMailId = ThrowsExample.isValidEmail(email)
+        let isValidMailId = ThrowsExample.isValidEmail(email: email)
         if !isValidMailId{
             throw LoginValidationError.emailValidationFailed
         }
@@ -32,7 +36,7 @@ class ThrowsExample
 
 extension ThrowsExample
 {
-    static func isValidEmail(_ email: String) -> Bool {
+    static func isValidEmail(email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
