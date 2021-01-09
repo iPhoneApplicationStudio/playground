@@ -6,7 +6,11 @@ enum LoginValidationError:Error {
    case passwordLengthNotCorrect
 }
 
-class ThrowsExample
+protocol ThrowsExampleProtocol:AnyObject{
+    func validatePasswordLength() -> Bool
+}
+
+class ThrowsExample:ThrowsExampleProtocol
 {
     //Change these 2 vars to test the throw error
     var email:String? = "abc@gmail.com"
@@ -28,6 +32,7 @@ class ThrowsExample
         
     }
     func proceedToLogin(){}
+    func validatePasswordLength() -> Bool {return true}
 }
 
 extension ThrowsExample
