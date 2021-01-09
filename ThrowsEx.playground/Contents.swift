@@ -8,6 +8,7 @@ enum LoginValidationError:Error {
 
 protocol ThrowsExampleProtocol:AnyObject{
     func login() throws
+    func validatePasswordLength() -> Bool
 }
 
 class ThrowsExample:ThrowsExampleProtocol
@@ -32,6 +33,7 @@ class ThrowsExample:ThrowsExampleProtocol
         
     }
     func proceedToLogin(){}
+    func validatePasswordLength() -> Bool {return true}
 }
 
 extension ThrowsExample
